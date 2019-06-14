@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<body>
+
+  <div class="container text-center" style="background-color:#f5f5f5">
+    <h2 style="background-color:  #ffffff" *ngIf="isSavedOrder">Saved Orders</h2>
+    <h2 style="background-color:  #ffffff" *ngIf="isPlacedOrder">Placed Orders</h2>
+
+    <table class="table table" style="width: 800px" align="center">
+      <thead>
+        <tr>
+          <th>OrderId</th>
+          <th>Customer Name</th>
+          <th>Order Time</th>
+          <th>Order Amount</th>
+          <th>Order Status</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let savedOrder of savedOrders, let i=index">
+
+        <tr *ngIf="checkDate(i,savedOrders)">
+          <td colspan="5" style="background-color: #ffffff">Date: {{savedOrder.createOrderDateTime.dayOfMonth}}/ {{savedOrder.createOrderDateTime.month}}/ {{savedOrder.createOrderDateTime.year}}
+          </td>
+        </tr>
+
+        <tr class="clickedRow" (click)="setClickedRow(i,savedOrder.id)">
+          <td>{{savedOrder.id}}</td>
+          <td>{{savedOrder.customerName}}</td>
+          <td>{{savedOrder.createOrderDateTime.hour}}:{{savedOrder.createOrderDateTime.minute}}:{{savedOrder.createOrderDateTime.second}}</td>
+          <td>{{savedOrder.amount}}</td>
+          <td>{{savedOrder.status}}</td>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+
+</body>

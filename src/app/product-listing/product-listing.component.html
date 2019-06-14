@@ -1,0 +1,26 @@
+<div class="input-group">
+  <input class="form-control" type="search" placeholder="Search Items" (input)="searchProducts(inp.value)" #inp>
+  <div class="input-group-append">
+    <button class="btn btn-info" type="button">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+</div>
+
+
+<div class="row" id="productListing" >
+  <div class="card" style="width: 11rem;margin: 5px;" *ngFor="let product of products">
+    <div class="card text-center">
+      <div class="card-header">
+        <h5 class="card-title">{{product.name}}</h5>
+
+      </div>
+      <p class="card-title">{{product.description}}</p>
+      <p class="card-title">Price : &#8377;{{product.unitPrice}}</p>
+      <p class="card-title">Stock :{{product.stock}}</p>
+
+      <button class="btn" role="button" (click)="addToCart(product.id)" *ngIf="cart">Add To Cart</button>
+      <!-- style="background-color:darkslateblue;color: whitesmoke" -->
+    </div>
+  </div>
+</div>

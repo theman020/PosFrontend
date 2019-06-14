@@ -1,0 +1,13 @@
+.container {
+    border: 1px solid black;
+    height: 250px;
+    border-radius: 2px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+  .salesExecutive{
+    border: 1px solid black;
+    height: 30px;
+    margin-top: 20px;
+    border-radius: 2px;
+  }

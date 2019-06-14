@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Your closing balance is : {{closingAmount}}</h1>
+    <h3>Confirm to Logout</h3>
+  </div>
+  <button (click)="logoutEmployee()" type="submit" class="btn btn-success" > Confirm to Logout</button>
+  <button routerLink="/home" type="submit" class="btn btn-primary"  style="float:right"> Cancel </button>
+  <br>
+  <br>
+</div>

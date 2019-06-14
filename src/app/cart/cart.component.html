@@ -1,0 +1,83 @@
+<div align="center">
+  <h4 style="color:white">Cart</h4>
+</div>
+<input class="form-control" style="margin: 13px;" type="search" placeholder="Search Customer" value="" (input)="searchCustomers(inp.value)" #inp>
+<hr/>
+<div class="row">
+  <div class="col-12">
+    <div *ngIf="customer" class="input-group">
+      <i class="fa fa-user" style="font-size:36px"></i>&nbsp;&nbsp;
+      <div>
+        {{customer.name}}
+        <br/>
+        <p class="email"> {{customer.email}}
+          <button type="button" class="btn btn-danger" *ngIf="isHidden" (click)="clearCart()">DELETE</button>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="table-responsive-sm">
+  <table class="table">
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <a role="button" (click)="getCustomerCart(customer)">
+          <td>{{customer.name}}</td>
+          <td>{{customer.email}}</td>
+        </a>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <table id="cartProducts" class="table">
+    <thead>
+      <tr>
+
+        <th>Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="subtotal">
+      <tr  *ngFor="let cartDetail of cart.cartDetails">
+        <td>{{cartDetail.cartDetailsIdentity.product.name}}</td>
+        <td>{{cartDetail.cartDetailsIdentity.product.unitPrice}}</td>
+        <td>
+          <div>
+            <div class="quantity">
+              <input type="button" value="-" class="btn btn-sm" (click)="decrementQuantity(cartDetail)"> {{cartDetail.quantity}}
+              <input type="button" value="+" class="btn btn-sm" (click)="incrementQuantity(cartDetail)">
+            </div>
+          </div>
+        </td>
+        <td>{{cartDetail.cartDetailsIdentity?.product.unitPrice*cartDetail?.quantity}}</td>
+        <td>
+          <div class="col-2 col-sm-2 col-md-2 text-right">
+            <button type="button" class="btn btn-outline-danger btn-xs" (click)="deleteProductFromCart(cartDetail.cartDetailsIdentity?.product.id)">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Subtotal</td>
+        <td colspan="4" align="right" class="bill">{{subtotal}}</td>
+      </tr>
+      <tr>
+        <td>Tax</td>
+        <td colspan="4" align="right" class="bill">{{tax}}</td>
+      </tr>
+      <tr>
+        <td>Grand total</td>
+        <td colspan="4" align="right" class="bill">{{subtotal+tax}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button *ngIf="subtotal" routerLink='/checkout' class="btn btn-default btn-block button" style="width: 10opx;">
+    Checkout</button>
+</div>

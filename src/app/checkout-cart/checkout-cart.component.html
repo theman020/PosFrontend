@@ -1,0 +1,57 @@
+<div style="color: white; background-color: darkslateblue ; height: 1cm; " align="center">
+  <h5>Cart</h5>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="input-group">
+      <i class="fa fa-user" style="font-size:36px"></i>&nbsp;&nbsp;
+      <div>
+        {{activeCustomer.name}}
+        <br/>
+        <p class="email"> {{activeCustomer.email}}
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div>
+  <table id="cartProducts" class="table">
+    <thead>
+      <tr>
+
+        <th>Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartDetail of activeCart.cartDetails">
+        <td>{{cartDetail.cartDetailsIdentity?.product.name}}</td>
+        <td>{{cartDetail.cartDetailsIdentity?.product.unitPrice}}</td>
+        <td>
+          {{cartDetail.quantity}}
+        </td>
+        <td>{{cartDetail.cartDetailsIdentity?.product.unitPrice*cartDetail?.quantity}}</td>
+
+      </tr>
+      <tr>
+        <td>Subtotal</td>
+        <td colspan="4" align="right" class="bill">{{subtotal}}</td>
+      </tr>
+      <tr>
+        <td>Tax</td>
+        <td colspan="4" align="right" class="bill">{{tax}}</td>
+      </tr>
+      <tr>
+        <td>Grand total</td>
+        <td colspan="4" align="right" class="bill">{{subtotal+tax}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

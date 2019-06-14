@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+
+<div class="container" >
+  <div class="text-center">
+    <h4 style="background-color: #b6b6b6" *ngIf="order">Order: #{{order.id}}</h4>
+    <div  *ngIf="order">Order Amount: &#8377; {{order.amount}}</div>
+    <div>
+      
+      <p *ngIf="order" >Created Date:{{order.createOrderDateTime.dayOfMonth}}/ {{order.createOrderDateTime.month}}/ {{order?.createOrderDateTime.year}}
+      &nbsp; {{order.createOrderDateTime.hour}}: {{order.createOrderDateTime.minute}}: {{order?.createOrderDateTime.second}}</p>
+    </div>
+    <div *ngIf="order"> Status:{{order.status}}</div>
+     <div *ngIf="order && isSavedOrder" >Total Due:{{order.amount}}</div> 
+  </div>
+
+  <button *ngIf="isSavedOrder" class="btn btn-primary" (click)="reloadCustomerOrder(order)">Reload</button>
+  <a role="button" routerLink="/saveorder/savedOrders" *ngIf="isSavedOrder" class="btn btn-danger"style="float:right">Cancel</a>
+  <hr>
+
+  <div class="text-left">
+    <h5 style="background-color:#b6b6b6">Mode Of Payment</h5>
+    <p *ngIf="order">{{order.modeOfPayment | titlecase}} only</p>
+    <p *ngIf="order">Order was placed using INR</p>
+  </div>
+</div>
+<div class="container text-left">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th style="width:50%">Products</th>
+        <th style="width:16%">Price</th>
+        <th style="width:16%">Quantity</th>
+        <th style="width:18%"> Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let orderDetails of order?.orderDetails">
+        <td>{{orderDetails.orderDetailsIdentity.product.name}} &nbsp; {{orderDetails.orderDetailsIdentity.product.description}}
+        </td>
+        <td>{{orderDetails.orderDetailsIdentity.product.unitPrice}}</td>
+        <td>{{orderDetails.quantity}}</td>
+        <td>{{orderDetails.orderDetailsIdentity.product.unitPrice * orderDetails.quantity }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container text-right">
+  <p *ngIf="order">Subtotal: &#8377;{{order.amount-10}}</p>
+  <p>Tax: &#8377;10.00</p>
+  <p *ngIf="order">Grand: &#8377;{{order.amount}}</p>
+  <p *ngIf="order">Total Paid: &#8377;{{order.amount}}</p>
+
+</div>

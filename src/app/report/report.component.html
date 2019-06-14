@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="container" style="background-color: #d4edda; margin-top: 20px">
+  <form invalidate [formGroup]="form" (ngSubmit)="downloadReports(form)" class="form-horizontal" role="form">
+
+    <div class="jumbotron" style="background-color: #e2ece4">
+      <div class="alert alert-success">
+        
+        <h4>Download the reports here</h4>
+        From Date :
+        <input type="date" formControlName="fromDate" class="form-control" required> To Date :
+        <div *ngIf="form.get('fromDate').invalid && form.get('fromDate').touched">
+          <div *ngIf="form.get('fromDate').hasError('fromDate')">
+            Please mention the starting date
+          </div>
+        </div>
+        <input type="date" formControlName="toDate" class="form-control" required>
+        <div *ngIf="form.get('toDate').invalid && form.get('toDate').touched">
+          <div *ngIf="form.get('toDate').hasError('toDate')">
+            Please mention the ending date
+          </div>
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        <i class="fa fa-download"></i> Download</button>
+      <button routerLink="/home" type="submit" class="btn btn-primary"  style="float:right"> Cancel </button>
+    </div>
+  </form>
+</div>

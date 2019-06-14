@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<table class="table" style="width: 800px" align="center" >
+  <thead class="table-active">
+    <tr>
+      <th scope="col">Login Time</th>
+      <th scope="col">Logout Time</th>
+      <th scope="col">Starting Amount</th>
+      <th scope="col">Closing Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cashDrawerDetail of cashDrawerDetails">
+      <td >{{cashDrawerDetail.loginTime.hour}}:
+        {{cashDrawerDetail.loginTime.minute}}:
+        {{cashDrawerDetail.loginTime.second}} &nbsp; &nbsp;
+        {{cashDrawerDetail.loginTime.dayOfMonth}}/
+        {{cashDrawerDetail.loginTime.month}}/
+        {{cashDrawerDetail.loginTime.year}}
+      </td>
+      <td>{{cashDrawerDetail.logoutTime.hour}}:
+        {{cashDrawerDetail.logoutTime.minute}}:
+        {{cashDrawerDetail.logoutTime.second}} &nbsp; &nbsp;
+        {{cashDrawerDetail.logoutTime.dayOfMonth}}/
+        {{cashDrawerDetail.logoutTime.month}}/
+        {{cashDrawerDetail.logoutTime.year}}
+      </td>
+      <td>{{cashDrawerDetail.startingAmount}}</td>
+      <td>{{cashDrawerDetail.endingAmount}}</td>
+    </tr>
+  </tbody>
+</table>

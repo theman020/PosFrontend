@@ -1,0 +1,14 @@
+<!-- <app-header></app-header> -->
+<app-navbar></app-navbar>
+<!-- <app-side-bar></app-side-bar> -->
+
+<div class="row" style="background-color: darkslateblue;height: 2.5em;">
+
+<div class="col"> 
+    <app-product-listing  [cart]="cart" (result)="updateCart($event)"></app-product-listing>
+</div> 
+ <div class="col"  > 
+    <app-cart [cart]="cart"  (result)="updateCart($event)"></app-cart>
+</div> 
+
+</div>
